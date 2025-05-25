@@ -19,6 +19,14 @@ spec:
         - name: goserver
           image: raffreitas/hello-go:v5.4
 
+          resources:
+            requests: # Mínimo de recursos
+              cpu: 100m
+              memory: 20Mi
+            limits:
+              cpu: 500m
+              memory: 50Mi
+
           startupProbe:
             httpGet:
               path: /healthz
