@@ -41,9 +41,9 @@ func Secret(w http.ResponseWriter, r *http.Request) {
 func Healthz(w http.ResponseWriter, r *http.Request) {
 	duration := time.Since(startedAt)
 
-	if duration.Seconds() > 25 {
+	if duration.Seconds() < 10 || duration.Seconds() > 30 {
 		w.WriteHeader(500)
-		w.Write([]byte(fmt.Sprintf("Duration: %v", duration.Seconds())))
+		w.Write(fmt.Appendf(nil, "Duration: %v", duration.Seconds()))
 	} else {
 		w.WriteHeader(200)
 		w.Write([]byte("ok"))
